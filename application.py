@@ -24,6 +24,7 @@ def predict_datapoint():
     
     if request.method=='POST':
         Pregnancies=int(request.form.get("Pregnancies"))
+        Glucose=int(request.form.get("Glucose"))
         BloodPressure=float(request.form.get('BloodPressure'))
         SkinThickness=float(request.form.get('SkinThickness'))
         Insulin=float(request.form.get('Insulin'))
@@ -31,7 +32,7 @@ def predict_datapoint():
         DiabetesPedigreenFunction=float(request.form.get('DiabetesPedigreenFunction'))
         Age=float(request.form.get('Age'))
         
-        new_data=scaler.transform([[Pregnancies,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreenFunction,Age]])
+        new_data=scaler.transform([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreenFunction,Age]])
         predict=model.predict(new_data)
         
         if predict[0]==1:
